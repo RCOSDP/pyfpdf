@@ -1495,7 +1495,10 @@ class FPDF(object):
                         raise  # Not a permission error.
             if cid > 255 and (cid not in subset): #
                 continue
-            width = font['cw'][cid]
+            try:
+                width = font['cw'][cid]
+            except IndexError:
+                continue
             if (width == 0):
                 continue
             if (width == 65535): width = 0
